@@ -1,5 +1,6 @@
 package UD6_OOP.EjerciciosII_MasClases.Ejercicio2;
 
+import java.sql.SQLOutput;
 import java.util.Random;
 
 /**
@@ -16,6 +17,12 @@ public class main {
 
         System.out.println(coche1.getTipo().getNombre());
         System.out.println(coche1.getModalidad().getNombre());
-        
+
+        Coches coche2 = new Coches("Antiguo", "Azul",
+                false, "JKKJJKJ", Coches.Tipo.FAMILIAR,
+                Coches.ModalidadSeguro.TERCEROS);
+
+        System.out.println(coche2);
+
     }
 }
