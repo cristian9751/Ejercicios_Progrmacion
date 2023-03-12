@@ -30,8 +30,12 @@ public class Dni {
         return letras_dni[this.dni % 23];
     }
 
-    public String getNIF() {
+    private String getNIF() {
         String res = Integer.toString(this.dni) + calc_letra();
         return res;
+    }
+
+    public void imprime() {
+        System.out.println(getNIF());
     }
 }

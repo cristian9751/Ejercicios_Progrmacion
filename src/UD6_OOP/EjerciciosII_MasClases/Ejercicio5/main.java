@@ -8,6 +8,6 @@ package UD6_OOP.EjerciciosII_MasClases.Ejercicio5;
 public class main {
     public static void main(String[] args) {
         Dni primero = new Dni(17512372);
-        System.out.println(primero.getNIF());
+        primero.imprime();
     }
 }
