@@ -42,9 +42,7 @@ public class main {
         persona2.edad = edad_persona2;
         persona2.dni = dni_persona2;
 
-        persona1.toString();
-        persona2.toString();
-
-
+        System.out.println(persona1);
+        System.out.println(persona2);
     }
 }

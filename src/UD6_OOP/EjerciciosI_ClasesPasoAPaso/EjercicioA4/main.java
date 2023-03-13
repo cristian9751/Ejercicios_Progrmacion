@@ -12,7 +12,7 @@ public class main {
         miarticulo.precio = 256.0;
         miarticulo.CuantosQuedan = 7;
 
-        System.out.println(miarticulo.toString());
+       System.out.println(miarticulo);
     }
 
 }

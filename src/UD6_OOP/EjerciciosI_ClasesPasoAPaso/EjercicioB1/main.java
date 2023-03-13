@@ -10,8 +10,8 @@ public class main {
         punto punto1 = new punto(50.0, 10.0);
         punto punto2 = new punto(-3.0,7.0);
 
-        System.out.println(punto1.toString());
-        System.out.println(punto2.toString());
+        System.out.println(punto1);
+        System.out.println(punto2);
 
         punto1.x += 1;
         punto2.y *= 2;

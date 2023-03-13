@@ -11,8 +11,8 @@ public class main {
         punto punto1 = new punto(50.0, 10.0);
         punto punto2 = new punto(-3.0, 7.0);
 
-        punto1.toString();
-        punto2.toString();
+        System.out.println(punto1);
+        System.out.println(punto2);
 
 
         Double x1 = punto1.getX();

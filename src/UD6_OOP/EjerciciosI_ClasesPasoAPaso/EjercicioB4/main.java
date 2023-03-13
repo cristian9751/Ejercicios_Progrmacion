@@ -9,7 +9,7 @@ public class main {
     public static void main(String[] args) {
         articulo miarticulo = new articulo("Mi producto", 256.0, 7);
 
-        System.out.println(miarticulo.toString());
+        System.out.println(miarticulo);
     }
 
 }

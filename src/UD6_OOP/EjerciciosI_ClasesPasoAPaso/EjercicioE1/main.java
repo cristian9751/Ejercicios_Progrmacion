@@ -19,9 +19,9 @@ public class main {
         punto punto2 = new punto(-3.0, 7.0);
         punto punto3 = CreaPuntoAle();
 
-        punto1.toString();
-        punto2.toString();
-        punto3.toString();
+        System.out.println(punto1);
+        System.out.println(punto2);
+        System.out.println(punto3);
 
 
         Double x1 = punto1.getX();

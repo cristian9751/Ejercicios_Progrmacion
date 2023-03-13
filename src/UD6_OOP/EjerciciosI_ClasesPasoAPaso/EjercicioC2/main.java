@@ -44,11 +44,8 @@ public class main {
         persona2.setApellidos(apellidos_persona2);
         persona1.setApellidos(apellidos_persona1);
 
-
-
-        persona1.toString();
-        persona2.toString();
-
+        System.out.println(persona1);
+        System.out.println(persona2);
 
     }
 }

@@ -22,7 +22,7 @@ public class main {
         punto2.y *= 2;
         punto2.x *= 5;
 
-        System.out.println(punto1.toString());
-        System.out.println(punto2.toString());
+        System.out.println(punto1);
+        System.out.println(punto2);
     }
 }
