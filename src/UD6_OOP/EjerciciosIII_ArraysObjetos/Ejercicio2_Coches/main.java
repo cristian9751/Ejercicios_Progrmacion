@@ -16,52 +16,55 @@ public class main {
         return new Scanner(System.in).nextInt();
     }
 
-    static Coche crearCoche() {
-       String modelo = PideString("Introduce el modelo:");
-       String color = PideString("Introduce el color: ");
-       boolean metalizado = metalizado();
-       int fabricacion = PideInt("Año de fabricacion: ");
-       String matricula = PideString("Matricula: ");
-       modalidad_seguro modalidad = sel_modalidad();
-       return new Coche(modelo, modalidad, metalizado, color, fabricacion, matricula);
+    public static Coche crearCoche(int i) {
+        String txt = "del vehiculo " + (i + 1);
+        String modelo = PideString("Introduce el modelo " + txt + ": " );
+        String color = PideString("Introduce el color " + txt + ": ");
+        boolean metalizado = metalizado();
+        int fabricacion = PideInt("Año de fabricacion " + txt +": ");
+        String matricula = PideString("Matricula " + txt + ": ");
+        modalidad_seguro modalidad = sel_modalidad();
+        return new Coche(modelo, modalidad, metalizado, color, fabricacion, matricula);
        
     }
 
-    static modalidad_seguro sel_modalidad() {
-        modalidad_seguro res = null;
-        System.out.println("Modalidades de seguro ");
-        int cont = 1;
-        for (modalidad_seguro modalidad : modalidad_seguro.values()) {
-            System.out.println("Modalidad " + cont + " - " + modalidad.getNombre());
-            cont++;
-        }
+    static boolean metalizado() {
+        int input = sel_dato("¿El color es metalizado?" +
+                "(Si: 1 No: 2)");
 
-        int input = PideInt("Selecciona el numero de una modalidad ");
         if(input == 1) {
-            res =  modalidad_seguro.TERCEROS;
-        } else if(input == 2) {
-            res =  modalidad_seguro.TODO_RIESGO;
+            return true;
+        } else {
+            return false;
         }
- 
-        return res;
     }
 
-    static boolean metalizado() {
-        boolean res = false;
-        String input = PideString("¿El color es metalizado?(Si o No)");
-        if(input.equalsIgnoreCase("Si")) {
-            res = true;
-        } else if(!input.equalsIgnoreCase("No")) {
-            System.out.println("Debes introducir si o no en el valor metalizado");
+    static modalidad_seguro sel_modalidad() {
+        int input = sel_dato("Selecciona la " +
+                "modalidad  de seguro 1" +
+                "o la modalidad 2");
+        if(input == 1) {
+            return modalidad_seguro.TERCEROS;
+        } else {
+            return modalidad_seguro.TODO_RIESGO;
         }
 
-        return res;
-    } 
+    }
+    static int sel_dato(String texto) {
+        int input;
+        do {
+            input = PideInt(texto);
+            texto = "Debes introducir 1 o 2";
+        } while(input != 1 && input != 2);
+
+        return input;
+    }
+
 
     public static void main(String[] args) {
         Coche coches[] = new Coche[3];
         for(int i = 0; i<coches.length; i++) {
-            coches[i] = crearCoche();
+            coches[i] = crearCoche(i);
         }
     }
 }
