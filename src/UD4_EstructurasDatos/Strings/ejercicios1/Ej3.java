@@ -1,3 +1,4 @@
+package UD4_EstructurasDatos.Strings.ejercicios1;
 import java.util.Scanner;
 
 public class Ej3 {

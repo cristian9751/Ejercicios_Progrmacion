@@ -9,7 +9,7 @@ public class ejercicio9 {
         Random ran = new Random();
         int[] numeros = new int[100];
         for(int i = 0; i<numeros.length; i++) {
-            numeros[i]= ran.nextInt(1, 10);
+            numeros[i]= ran.nextInt(10);
         }
 
         System.out.print("Introduce el valor a buscar: ");

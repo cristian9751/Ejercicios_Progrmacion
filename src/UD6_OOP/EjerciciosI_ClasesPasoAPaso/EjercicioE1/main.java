@@ -9,11 +9,10 @@ import java.util.Random;
  */
 public class main {
 
-    static Random rnd = new Random();
     public static punto CreaPuntoAle() {
-        return new punto(rnd.nextDouble(-100.0, 100.0),
-                rnd.nextDouble(-100, 100));
-    }
+        return new punto(Math.random() * (100 - (-100) + 1) + (-100),
+        Math.random() * (100 - (-100) + 1) + (-100));
+    } 
 
     public static void main(String[] args) {
         punto punto1 = new punto(50.0, 10.0);
@@ -39,7 +38,7 @@ public class main {
         punto2.setX(x2);
         punto2.setY(y2);
 
-        punto1.toString();
-        punto2.toString();
+        System.out.println(punto1);
+        System.out.println(punto2);
     }
 }
