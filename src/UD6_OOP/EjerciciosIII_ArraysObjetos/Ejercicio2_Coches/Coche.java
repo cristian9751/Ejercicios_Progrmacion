@@ -27,7 +27,7 @@ public class Coche {
         this.modelo = modelo;
         this.metalizado = metalizado;
         this.color = color;
-        Fabricacion = fabricacion;
+        this.Fabricacion = fabricacion;
         this.matricula = matricula;
         this.modalidad = modalidad;
     }
@@ -64,13 +64,7 @@ public class Coche {
         return this.modalidad;
     }
 
-    
-
-    @Override
     public String toString() {
         return "Coche [modelo=" + modelo + ", metalizado=" + metalizado + ", Fabricacion=" + Fabricacion + "]";
     };
-    
-    
-
 }
