@@ -2,6 +2,8 @@ package UD6_OOP.EjerciciosIII_ArraysObjetos.Ejercicios3_Cuenta;
 
 import UD6_OOP.EjerciciosII_MasClases.Ejercicios3.CuentaCorriente;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -24,7 +26,7 @@ public class main {
         return new Scanner(System.in).nextDouble();
     }
 
-    public static void menu() {
+    public static int menu() {
         System.out.println("1. Ver cuentas");
         System.out.println("2.Ingresar");
         System.out.println("3. Retirar");
@@ -32,66 +34,83 @@ public class main {
         System.out.println("5. Salir");
         int opcion = PideInt("Selecciona una opción");
         manejar(opcion);
+        return opcion;
 
     }
 
-    public static  void cabecera() {
-        System.out.println("Titular" + "\t" + "Saldo");
+    public static String imprimir_cuenta(cuenta cuenta) {
+        return cuenta.toString();
     }
 
-    public static cuenta buscar() {
-        System.out.print("Indica el nombre de cuenta: ");
-        String titular = new Scanner(System.in).nextLine();
+    public static String imprimir_cuenta(int n) {
+        System.out.print(n + "\t");
+        return imprimir_cuenta(cuentas[n]);
+    }
+
+    public static String cabeceraid() {
+        return "Id" + "\t" + cuenta.cabecera();
+    }
+
+    public static void muestracuentas() {
+        System.out.println(cabeceraid());
         for(int i = 0; i<cuentas.length; i++) {
-            if(cuentas[i].getTitular().equalsIgnoreCase(titular)) {
-                System.out.println(i + "" + cuentas[i]);
-            }
+            System.out.println(imprimir_cuenta(i));
         }
-        return elegir();
-    }
+    } 
 
-    public static cuenta elegir() {
-        int n_cuenta = PideInt("Selecciona la id de la cuenta ");
+    public static cuenta elegir(String txt) {
+        muestracuentas();
+        int n_cuenta = PideInt("Selecciona la id de la cuenta " + txt + ": ");
         return cuentas[n_cuenta];
     }
 
     public static void manejar(int opcion) {
         if(opcion == 4) {
-            operaciones(opcion, buscar(), buscar());
-        } else if(opcion != 1) {
-            operaciones(opcion, buscar(), null);
+            operaciones(opcion, elegir("emisora"), elegir("receptora"));
+        } else if(opcion == 2 || opcion == 3) {
+            operaciones(opcion, elegir(""), null);
         } else {
             operaciones(opcion, null, null);
         }
     }
 
-    public static void transferencia(cuenta cuenta1, cuenta cuenta2, Double cant) {
-        if(cuenta1.retirar(cant)) {
-            cuenta2.ingresar(cant);
+    public static void transferencia(cuenta emisor, cuenta receptor, Double cant) {
+        System.out.println(cuenta.cabecera());
+        if(emisor.retirar(cant, false)) {
+            receptor.ingresar(cant, false);
+            System.out.println("Transferencia realizada con exito");
         }
+        
     }
     private static void operaciones(int opcion, cuenta cuenta1, cuenta cuenta2) {
         switch (opcion) {
             case 1:
-                cabecera();
-                for(int i = 0; i<cuentas.length; i++) {
-                    System.out.println(i + "" + cuentas[i]);
-                }
+                muestracuentas();
                 break;
             case 2:
-                cuenta1.ingresar(PideDouble("Introduce la cantidad a ingresar"));
+                cuenta1.ingresar(PideDouble("Introduce la cantidad a ingresar"), true);
                 break;
             case 3:
-                cuenta1.retirar(PideDouble("Introduce la cantidad a retirar"));
+                cuenta1.retirar(PideDouble("Introduce la cantidad a retirar"), true);
                 break;
             case 4:
-
+                transferencia(cuenta1, cuenta2,PideDouble("Introduce la cantidad" +
+                " a transferir"));
                 break;
             case 5:
+                System.out.println("Saliste del menu");
                 break;
             default:
+                System.out.println("Debes escoger una opcion de 1 a 5.");
                 break;
         }
+    }
+
+    public static void main(String[] args) {
+        int opcion;
+        do {
+            opcion = menu();
+        } while(opcion != 5);
     }
 
 }

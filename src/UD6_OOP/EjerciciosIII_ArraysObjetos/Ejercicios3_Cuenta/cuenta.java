@@ -30,22 +30,40 @@ public class cuenta {
         Titular = titular;
     }
 
-    public void ingresar(Double saldo) {
+    public void ingresar(Double saldo, boolean cabecera) {
         this.Saldo += saldo;
+        mostrar_cabecera(cabecera);
+        System.out.println(this);
     }
 
-    public boolean retirar(Double saldo) {
+    public boolean retirar(Double saldo, boolean cabecera) {
+        boolean res = false;
         if(this.Saldo >= saldo) {
             this.Saldo -= saldo;
-            return true;
+            res = true;
         } else {
-            System.out.println("La cuenta no tiene fondos suficientes");
-            return false;
+            System.out.println("La cuenta de " + this.Titular
+            + " no tiene fondos suficientes");
+        }
+        mostrar_cabecera(cabecera);
+
+        System.out.println(this);
+        return res;
+    }
+
+    public static String cabecera() {
+        return "Titular" + "\t" + "Saldo";
+    }
+
+    private static void mostrar_cabecera(boolean cabecera) {
+        if(cabecera) {
+            System.out.println(cabecera());
         }
     }
 
-    @Override
+    
     public String toString() {
         return this.Titular + "\t" + this.Saldo;
     }
+    
 }
