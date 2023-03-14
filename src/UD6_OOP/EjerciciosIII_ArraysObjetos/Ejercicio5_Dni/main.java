@@ -29,6 +29,7 @@ public class main {
     }
     public static void main(String[] args) {
         rellenar_array();
+        comprobar_vocales();
     }
 
 
