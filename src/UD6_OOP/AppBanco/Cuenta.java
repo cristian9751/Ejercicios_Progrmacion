@@ -2,7 +2,7 @@ package UD6_OOP.AppBanco;
 
 public class Cuenta {
     private String Titular;
-    private Double Saldo;
+    private int Saldo;
 
     public Cuenta(String titular, Double saldo) {
         this.Titular = titular;
@@ -19,24 +19,24 @@ public class Cuenta {
         Titular = titular;
     }
 
-    public Double getSaldo() {
+    public int getSaldo() {
         return Saldo;
     }
 
-    public void setSaldo(Double saldo) {
+    public void setSaldo(int saldo) {
         if(comprobar_saldo(saldo)) {
             this.Saldo = saldo;
         }
     }
 
     
-    public void ingresar(Double saldo)  {
+    public void ingresar(int saldo)  {
         if(comprobar_saldo(saldo)) {
             this.Saldo += saldo;
         }
     }
 
-    public void retirar(Double saldo) {
+    public void retirar(int saldo) {
         if(mayorque(saldo, this.Saldo))  {
             this.setSaldo(this.Saldo -= saldo);
         } else {
@@ -46,7 +46,7 @@ public class Cuenta {
     }
 
 
-    private boolean mayorque(Double cantidad, Double max) {
+    private boolean mayorque(int cantidad, int max) {
         if(cantidad > max) {
             return true;
         } else {
