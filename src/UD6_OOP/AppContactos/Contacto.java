@@ -39,10 +39,7 @@ public class Contacto {
         Telefono = telefono;
     }
 
-    @Override
     public String toString() {
-        return "Nombre: '" + nombre + "\n" +
-                "Correo: " + correo + "\n" +
-                "Telefono: " + Telefono + "\n";
+        return this.nombre + "\t" + this.correo + "\t" + this.Telefono;
     }
 }
