@@ -35,6 +35,12 @@ public class Banco {
     }
 
 
+    public static int pideInt(String txt) {
+        System.out.println(txt);
+        return new Scanner(System.in).nextInt();
+    }
+
+
     public static Cuenta Elegirid() {
         if(mostrar_banco()) {
             System.out.println("Selecciona la id de una cuenta");
