@@ -1,4 +1,4 @@
-package UD6_Extra_ArrayList.Ejercicio2;
+package UD6_OOP.UD6_Extra_ArrayList.Ejercicio2;
 
 import java.util.ArrayList;
 import java.util.List;

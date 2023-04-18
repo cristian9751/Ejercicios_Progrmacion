@@ -1,4 +1,4 @@
-package UD6_Extra_ArrayList.Ejercicio1;
+package UD6_OOP.UD6_Extra_ArrayList.Ejercicio1;
 
 /**
  * Crea un programa que en su función ‘main’ haga lo siguiente en el orden indicado:
