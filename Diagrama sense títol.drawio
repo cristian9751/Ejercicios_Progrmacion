@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2023-04-30T08:07:57.948Z" agent="Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/112.0" etag="pQm0olOhcahszhJsJIBl" version="21.2.3" type="github">
+<mxfile host="app.diagrams.net" modified="2023-04-30T08:09:22.337Z" agent="Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/112.0" etag="iQYIPOUW0loLbzBO4QMJ" version="21.2.3" type="github">
   <diagram id="C5RBs43oDa-KdzZeNtuy" name="Page-1">
-    <mxGraphModel dx="2207" dy="1052" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1813" dy="751" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="WIyWlLk6GJQsqaUBKTNV-0" />
         <mxCell id="WIyWlLk6GJQsqaUBKTNV-1" parent="WIyWlLk6GJQsqaUBKTNV-0" />
@@ -283,6 +283,9 @@
         </mxCell>
         <mxCell id="vtiOXTEOpPCmhlc3RGoE-48" value="- Opcion_Exists() : boolean" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontStyle=0" vertex="1" parent="vtiOXTEOpPCmhlc3RGoE-0">
           <mxGeometry y="216" width="370" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="vtiOXTEOpPCmhlc3RGoE-53" value="" style="shape=image;html=1;verticalAlign=top;verticalLabelPosition=bottom;labelBackgroundColor=#ffffff;imageAspect=0;aspect=fixed;image=https://cdn2.iconfinder.com/data/icons/navigation-set-arrows-part-two/32/Arrow_Dotted_Right-128.png" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="1060" y="141" width="80" height="80" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
