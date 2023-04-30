@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2023-04-30T07:35:43.183Z" agent="Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/112.0" etag="nwVH673S0hYeKMSlxp4D" version="21.2.3" type="github">
+<mxfile host="app.diagrams.net" modified="2023-04-30T07:42:52.495Z" agent="Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/112.0" etag="tTRobQvIU4kNs8qBdMAT" version="21.2.3" type="github">
   <diagram id="C5RBs43oDa-KdzZeNtuy" name="Page-1">
-    <mxGraphModel dx="2397" dy="1230" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1350" dy="410" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="WIyWlLk6GJQsqaUBKTNV-0" />
         <mxCell id="WIyWlLk6GJQsqaUBKTNV-1" parent="WIyWlLk6GJQsqaUBKTNV-0" />
@@ -74,7 +74,7 @@
         <mxCell id="A8VGVOZZd6ALvdJsYfoM-14" value="+ Buscar_Articulo(String nomrbe) : List&lt;Articulo&gt;" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="zkfFHV4jXpPFQw0GAbJ--6" vertex="1">
           <mxGeometry y="60" width="540" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="A8VGVOZZd6ALvdJsYfoM-15" value="+ Quitar_Articulo(int id_articulo) : Boolean" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="zkfFHV4jXpPFQw0GAbJ--6" vertex="1">
+        <mxCell id="A8VGVOZZd6ALvdJsYfoM-15" value="+ Eliminar_Articulo(int id_articulo) : Boolean" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="zkfFHV4jXpPFQw0GAbJ--6" vertex="1">
           <mxGeometry y="86" width="540" height="26" as="geometry" />
         </mxCell>
         <mxCell id="A8VGVOZZd6ALvdJsYfoM-18" value="+ Agregar_Articulo(Articulo nuevo_articulo) : Boolean" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="zkfFHV4jXpPFQw0GAbJ--6" vertex="1">
@@ -161,7 +161,7 @@
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="zkfFHV4jXpPFQw0GAbJ--17" value="TienDAM&#xa;" style="swimlane;fontStyle=0;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;strokeWidth=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
-          <mxGeometry x="690" y="60" width="370" height="268" as="geometry">
+          <mxGeometry x="690" y="60" width="370" height="242" as="geometry">
             <mxRectangle x="550" y="140" width="160" height="26" as="alternateBounds" />
           </mxGeometry>
         </mxCell>
@@ -189,11 +189,8 @@
         <mxCell id="ULPPeF81TJFRuhBBlytX-3" value="- Pedir_String(String txt) : String" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontStyle=4" parent="zkfFHV4jXpPFQw0GAbJ--17" vertex="1">
           <mxGeometry y="190" width="370" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="ULPPeF81TJFRuhBBlytX-18" value="- Mostrar_Menu(Menu_Opciones) : void" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontStyle=4" parent="zkfFHV4jXpPFQw0GAbJ--17" vertex="1">
-          <mxGeometry y="216" width="370" height="26" as="geometry" />
-        </mxCell>
         <mxCell id="g4R08rIYTKRCDpoWUjAM-22" value="- Realizar_Pedido() : Pedido" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontStyle=4" parent="zkfFHV4jXpPFQw0GAbJ--17" vertex="1">
-          <mxGeometry y="242" width="370" height="26" as="geometry" />
+          <mxGeometry y="216" width="370" height="26" as="geometry" />
         </mxCell>
         <mxCell id="ULPPeF81TJFRuhBBlytX-28" value="&lt;&lt;Enum&gt;&gt;&#xa;TIPO_IVA" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;align=center;fontSize=14;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
           <mxGeometry x="490" y="210" width="160" height="146" as="geometry" />
@@ -207,7 +204,7 @@
         <mxCell id="vtiOXTEOpPCmhlc3RGoE-28" value="" style="line;html=1;strokeWidth=1;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" vertex="1" parent="ULPPeF81TJFRuhBBlytX-28">
           <mxGeometry y="86" width="160" height="8" as="geometry" />
         </mxCell>
-        <mxCell id="vtiOXTEOpPCmhlc3RGoE-31" value="+ get Descuento" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="ULPPeF81TJFRuhBBlytX-28">
+        <mxCell id="vtiOXTEOpPCmhlc3RGoE-31" value="+ Get/Set Nombre" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="ULPPeF81TJFRuhBBlytX-28">
           <mxGeometry y="94" width="160" height="26" as="geometry" />
         </mxCell>
         <mxCell id="vtiOXTEOpPCmhlc3RGoE-30" value="+ Get/Set Procentaje" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="ULPPeF81TJFRuhBBlytX-28">
