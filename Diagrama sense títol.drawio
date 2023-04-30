@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2023-04-30T09:50:29.099Z" agent="Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/112.0" etag="SXkmLWaZWuZrc_NXPpPC" version="21.2.3" type="github">
+<mxfile host="app.diagrams.net" modified="2023-04-30T09:52:37.263Z" agent="Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/112.0" etag="22BIWmeDx6qvMpDrLhDN" version="21.2.3" type="github">
   <diagram id="C5RBs43oDa-KdzZeNtuy" name="Page-1">
-    <mxGraphModel dx="2305" dy="980" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="3782" dy="1960" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="WIyWlLk6GJQsqaUBKTNV-0" />
         <mxCell id="WIyWlLk6GJQsqaUBKTNV-1" parent="WIyWlLk6GJQsqaUBKTNV-0" />
@@ -196,6 +196,9 @@
         <mxCell id="g4R08rIYTKRCDpoWUjAM-22" value="- Realizar_Pedido() : Pedido" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontStyle=4" parent="zkfFHV4jXpPFQw0GAbJ--17" vertex="1">
           <mxGeometry y="216" width="370" height="26" as="geometry" />
         </mxCell>
+        <mxCell id="vtiOXTEOpPCmhlc3RGoE-74" value="- Escoger_Almacen()" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontStyle=4" vertex="1" parent="zkfFHV4jXpPFQw0GAbJ--17">
+          <mxGeometry y="242" width="370" height="26" as="geometry" />
+        </mxCell>
         <mxCell id="ULPPeF81TJFRuhBBlytX-28" value="&lt;&lt;Enum&gt;&gt; TiposIva" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;align=center;fontSize=14;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
           <mxGeometry x="490" y="210" width="160" height="146" as="geometry" />
         </mxCell>
@@ -295,9 +298,6 @@
         </mxCell>
         <mxCell id="vtiOXTEOpPCmhlc3RGoE-72" value="- Manejo_Menu_Almacen(int opcion) : void" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontStyle=4" vertex="1" parent="vtiOXTEOpPCmhlc3RGoE-60">
           <mxGeometry y="86" width="370" height="26" as="geometry" />
-        </mxCell>
-        <mxCell id="vtiOXTEOpPCmhlc3RGoE-74" value="- Escoger_Almacen()" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontStyle=4" vertex="1" parent="vtiOXTEOpPCmhlc3RGoE-60">
-          <mxGeometry y="112" width="370" height="26" as="geometry" />
         </mxCell>
         <mxCell id="vtiOXTEOpPCmhlc3RGoE-77" value="" style="line;strokeWidth=2;direction=south;html=1;rotation=-90;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
           <mxGeometry x="1095.23" y="101.59" width="10" height="80.83" as="geometry" />
