@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2023-04-30T09:41:31.448Z" agent="Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/112.0" etag="UjuUTsqCFd4XrFyUnGIl" version="21.2.3" type="github">
+<mxfile host="app.diagrams.net" modified="2023-04-30T09:50:29.099Z" agent="Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/112.0" etag="SXkmLWaZWuZrc_NXPpPC" version="21.2.3" type="github">
   <diagram id="C5RBs43oDa-KdzZeNtuy" name="Page-1">
-    <mxGraphModel dx="2516" dy="1120" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="2305" dy="980" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="WIyWlLk6GJQsqaUBKTNV-0" />
         <mxCell id="WIyWlLk6GJQsqaUBKTNV-1" parent="WIyWlLk6GJQsqaUBKTNV-0" />
@@ -241,8 +241,8 @@
         <mxCell id="ULPPeF81TJFRuhBBlytX-57" value="- TipoIva" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
           <mxGeometry x="385" y="258" width="70" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="ULPPeF81TJFRuhBBlytX-65" value="Carrito" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
-          <mxGeometry x="700" y="400" width="60" height="30" as="geometry" />
+        <mxCell id="ULPPeF81TJFRuhBBlytX-65" value="- Carrito" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
+          <mxGeometry x="695" y="400" width="70" height="30" as="geometry" />
         </mxCell>
         <mxCell id="g4R08rIYTKRCDpoWUjAM-9" value="&lt;div&gt;- Cantidad_Pedida&lt;br&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
           <mxGeometry x="550" y="480" width="120" height="60" as="geometry" />
@@ -293,7 +293,7 @@
         <mxCell id="vtiOXTEOpPCmhlc3RGoE-71" value="- Menu_Principal(int opcion) : void" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontStyle=4" vertex="1" parent="vtiOXTEOpPCmhlc3RGoE-60">
           <mxGeometry y="60" width="370" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="vtiOXTEOpPCmhlc3RGoE-72" value="- Menu_Almacen(int opcion) : void" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontStyle=4" vertex="1" parent="vtiOXTEOpPCmhlc3RGoE-60">
+        <mxCell id="vtiOXTEOpPCmhlc3RGoE-72" value="- Manejo_Menu_Almacen(int opcion) : void" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontStyle=4" vertex="1" parent="vtiOXTEOpPCmhlc3RGoE-60">
           <mxGeometry y="86" width="370" height="26" as="geometry" />
         </mxCell>
         <mxCell id="vtiOXTEOpPCmhlc3RGoE-74" value="- Escoger_Almacen()" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontStyle=4" vertex="1" parent="vtiOXTEOpPCmhlc3RGoE-60">
