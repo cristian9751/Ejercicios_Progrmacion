@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2023-05-02T07:35:51.088Z" agent="Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:108.0) Gecko/20100101 Firefox/108.0" etag="xTSYUHzFD8T8ZBLQR0zD" version="21.2.3" type="github">
+<mxfile host="app.diagrams.net" modified="2023-05-02T07:40:58.858Z" agent="Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:108.0) Gecko/20100101 Firefox/108.0" etag="WGihQLXPidKsgFJzuVH3" version="21.2.3" type="github">
   <diagram id="C5RBs43oDa-KdzZeNtuy" name="Page-1">
     <mxGraphModel dx="1646" dy="407" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -51,11 +51,8 @@
         <mxCell id="1NojVk9h9IY2gMO6B6Ra-15" value="+ Disminuir_Cantidad(int cantidad) : Boolean" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="zkfFHV4jXpPFQw0GAbJ--0" vertex="1">
           <mxGeometry y="346" width="400" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="Q6QUk50S7k-S1s7HyewF-1" value="-check_cantidad(int id_articulo, int cantidad_nueva) : boolean" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontStyle=4" vertex="1" parent="zkfFHV4jXpPFQw0GAbJ--0">
-          <mxGeometry y="372" width="400" height="26" as="geometry" />
-        </mxCell>
         <mxCell id="A8VGVOZZd6ALvdJsYfoM-3" value="+ Articulo(String nombre, Double Precio_Sin_Iva, TipoIva iva, int cantidad)" style="text;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="zkfFHV4jXpPFQw0GAbJ--0" vertex="1">
-          <mxGeometry y="398" width="400" height="26" as="geometry" />
+          <mxGeometry y="372" width="400" height="26" as="geometry" />
         </mxCell>
         <mxCell id="ULPPeF81TJFRuhBBlytX-50" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" source="zkfFHV4jXpPFQw0GAbJ--6" edge="1">
           <mxGeometry relative="1" as="geometry">
