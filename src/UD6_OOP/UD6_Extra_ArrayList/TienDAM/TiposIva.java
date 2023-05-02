@@ -15,15 +15,26 @@ public enum TiposIva {
         return Nombre;
     }
 
-    public void setNombre(String nombre) {
-        Nombre = nombre;
+    public boolean setNombre(String nombre) {
+        if(nombre.length() < 1) {
+            return false;
+        } else {
+            this.Nombre = nombre;
+            return true;
+        }
     }
 
     public int getProcentaje() {
         return Procentaje;
     }
 
-    public void setProcentaje(int procentaje) {
-        Procentaje = procentaje;
+    public boolean setProcentaje(int procentaje) {
+        if(procentaje <= 0) {
+            return false;
+        } else {
+            this.Procentaje = procentaje;
+            return true;
+        }
+
     }
 }
