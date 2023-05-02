@@ -1,14 +1,19 @@
 package UD6_OOP.UD6_Extra_ArrayList.TienDAM;
+
+import java.util.List;
+
 public class TienDAM {
     public static void main(String[] args) {
         Articulo articulo1 = new Articulo("Articulo 1", 21.0, TiposIva.GENERAL, 10 );
-        System.out.println(articulo1);
+        Almacen almacen = new Almacen();
+        almacen.agregarArticulo(articulo1); //agregarArticulos funciona correctamente
 
-        articulo1.aumentarCantidad(10);
-        System.out.println(articulo1.getCantidad());
-        articulo1.reducirCantidad(10);
-        System.out.println(articulo1.getCantidad());
-        articulo1.setIva(TiposIva.REDUCIDO);
-        System.out.println(articulo1);
+        //almacen.eliminarArticulo(0); //Eliminar articulos funciona correctamente
+        //System.out.println("Buscar funciona " + almacen.buscarArticulo(articulo1.getNombre()));
+
+        Pedido pedido = new Pedido("Cliente 1");
+        pedido.anyadirArticulo(articulo1, 10);
+        System.out.println(pedido);
+
     }
 }

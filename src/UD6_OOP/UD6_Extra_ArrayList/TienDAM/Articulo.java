@@ -55,6 +55,10 @@ public class Articulo {
         return precio_sin_iva;
     }
 
+    /***
+     * Dado el precio sin iva y el procentaje calcula el precio final
+     * @return Devuelve el precio final del articulo
+     */
     public double getPrecioFinal() {
         return (precio_sin_iva + (precio_sin_iva * iva.getProcentaje() / 100));
     }
@@ -82,7 +86,7 @@ public class Articulo {
 
 
     public String toString() {
-        return "----------\n"+
+        return "\n----------\n"+
                 "Nombre: " + nombre + "\n" +
                 "Precio Sin Iva: " + precio_sin_iva + "€\n" +
                 "IVA: " + iva.getNombre() + " " + "(" + iva.getProcentaje() + ")\n"+
