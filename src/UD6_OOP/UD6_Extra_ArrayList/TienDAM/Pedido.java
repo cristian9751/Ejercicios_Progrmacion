@@ -102,10 +102,10 @@ public class Pedido {
             s2 += "\n" + articulo.getKey().getNombre() + "\t\t" + articulo.getValue() + "\n";
         }
 
-        String s3 = "----------\n" +
-                "Subtotal : " + this.getSubTotal() + "\n" +
+        String s3 ="Subtotal : " + this.getSubTotal() + " €\n" +
                 "Descuento: " + descuento + " €\n" +
-                "Total a pagar: " + getTotal() + " €\n";
+                "Total a pagar: " + getTotal() + " €\n" +
+                "----------\n";
 
         return s1.concat(s2).concat(s3);
     }
