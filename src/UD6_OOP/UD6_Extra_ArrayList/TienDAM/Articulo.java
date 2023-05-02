@@ -1,93 +1,93 @@
 package UD6_OOP.UD6_Extra_ArrayList.TienDAM;
 
 public class Articulo {
-    private String Nombre;
-    private Double Precio_Sin_Iva;
-    private Double Precio_Final; //Precio en el que se incluye el iva del atriculo
-    private int Cantidad;
-    private TiposIva Iva;
+    private String nombre;
+    private double precio_sin_iva;
+    //private double precio_final; //Precio en el que se incluye el iva del atriculo
+    private int cantidad;
+    private TiposIva iva;
 
-    public Articulo(String Nombre, Double Precio_Sin_Iva, TiposIva Iva, int Cantidad) {
-        this.Nombre = Nombre;
-        this.Precio_Sin_Iva = Precio_Sin_Iva;
-        this.Iva = Iva;
-        this.Cantidad = Cantidad;
+    public Articulo(String nombre, double precio_sin_iva, TiposIva iva, int cantidad) {
+        setNombre(nombre);
+        setPrecioSinIva(precio_sin_iva);
+        this.iva = iva;
+        if(cantidad > 0) {
+            this.cantidad = cantidad;
+        }
     }
 
     public String getNombre() {
-        return Nombre;
+        return nombre;
     }
 
     public boolean setNombre(String Nombre) {
         if(Nombre.length() > 1) {
-            this.Nombre = Nombre;
+            this.nombre = Nombre;
             return true;
         } else {
+            System.out.println();
             return false;
         }
     }
 
     public TiposIva getIva() {
-        return Iva;
+        return iva;
     }
 
     public void setIva(TiposIva Iva) {
-        this.Iva = Iva;
+        this.iva = Iva;
     }
 
-    public boolean setPrecio_Sin_Iva(Double Precio_Sin_Iva) {
+    public int getCantidad() {
+        return this.cantidad;
+    }
+
+    public boolean setPrecioSinIva(Double Precio_Sin_Iva) {
         if(Precio_Sin_Iva > 0) {
-            this.Precio_Sin_Iva = Precio_Sin_Iva;
-            return Calc_Precio_Final();
-        } else {
-            return false;
-        }
-    }
-
-    public Double getPrecio_Sin_Iva() {
-        return Precio_Sin_Iva;
-    }
-
-    public Double getPrecio_Final() {
-        return Precio_Final;
-    }
-    private boolean Calc_Precio_Final() {
-        Double Precio = (Precio_Sin_Iva * Iva.getProcentaje()) / 100;
-        if(Precio <= 0) {
-            return false;
-        } else {
-            this.Precio_Final = Precio;
+            this.precio_sin_iva = Precio_Sin_Iva;
             return true;
+        } else {
+            return false;
         }
     }
 
-    public boolean Aumentar_Cantidad(int Cantidad) {
-        int nueva_cantidad = this.Cantidad + Cantidad;
+    public Double get_precio_sin_iva() {
+        return precio_sin_iva;
+    }
+
+    public double getPrecioFinal() {
+        return (precio_sin_iva + (precio_sin_iva * iva.getProcentaje() / 100));
+    }
+
+    public boolean aumentarCantidad(int Cantidad) {
+        int nueva_cantidad = this.cantidad + Cantidad;
         if(nueva_cantidad <= 0) {
             return false;
         } else {
-            this.Cantidad = nueva_cantidad;
+            this.cantidad = nueva_cantidad;
             return true;
         }
     }
 
-    public boolean Reducir_Cantidad(int Cantidad) {
-        int nueva_cantidad = this.Cantidad - Cantidad;
+    public boolean reducirCantidad(int Cantidad) {
+        int nueva_cantidad = this.cantidad - Cantidad;
         if(nueva_cantidad <= 0) {
             return false;
         } else {
-            this.Cantidad = nueva_cantidad;
+            this.cantidad = nueva_cantidad;
             return true;
         }
     }
 
 
-    public String toString(String Nombre, Double Precio_Sin_Iva, Double Precio_Final, int cantidad, TiposIva Iva) {
+
+    public String toString() {
         return "----------\n"+
-                "Nombre: " + Nombre + "\n" +
-                "Precio Sin Iva: " + Precio_Sin_Iva + "€\n" +
-                "IVA: " + Iva.getNombre() + " " + "(" + Iva.getProcentaje() + ")\n"+
-                "Precio(Iva incluido): " + Precio_Final + "€\n" +
+                "Nombre: " + nombre + "\n" +
+                "Precio Sin Iva: " + precio_sin_iva + "€\n" +
+                "IVA: " + iva.getNombre() + " " + "(" + iva.getProcentaje() + ")\n"+
+                "Precio(Iva incluido): " + getPrecioFinal() + "€\n" +
+                "Cantidad: " + cantidad + " unidades\n" +
                 "----------\n";
     }
 }
