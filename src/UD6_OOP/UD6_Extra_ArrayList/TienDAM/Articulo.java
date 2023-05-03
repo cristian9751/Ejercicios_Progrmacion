@@ -25,7 +25,6 @@ public class Articulo {
             this.nombre = Nombre;
             return true;
         } else {
-            System.out.println();
             return false;
         }
     }

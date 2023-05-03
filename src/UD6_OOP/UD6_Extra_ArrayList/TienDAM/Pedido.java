@@ -1,16 +1,22 @@
 package UD6_OOP.UD6_Extra_ArrayList.TienDAM;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Pedido {
     String nombreCliente;
     double descuento;
-    HashMap<Articulo, Integer> carrito = new HashMap<>();
+    private HashMap<Articulo, Integer> carrito = new HashMap<>();
+    private static List<Pedido> pedidos = new ArrayList<>();
 
     Pedido(String nombreCliente, double descuento) {
         setNombreCliente(nombreCliente);
         setDescuento(descuento);
+        if(!this.isEmpty()) {
+            pedidos.add(this);
+        }
     }
 
     Pedido(String nombreCliente) {
@@ -91,6 +97,9 @@ public class Pedido {
         }
     }
 
+    public static List<Pedido> getList() {
+        return pedidos;
+    }
     @Override
     public String toString() {
         String s1 = "\n----------\n" +

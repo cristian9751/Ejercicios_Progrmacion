@@ -5,7 +5,9 @@ import java.util.List;
 
 public class Almacen {
     private List<Articulo> articulos =new ArrayList<>();
+    private static List<Almacen> almacenes = new ArrayList<>();
     public Almacen() {
+        almacenes.add(this);
     }
 
     public List<Articulo> buscarArticulo(String nombre) {
@@ -49,10 +51,42 @@ public class Almacen {
         }
     }
 
-    public boolean checkEmpty() {
+    /**
+     * Comprueba si hay articulos añadidos en el almacen
+     * @return Devuelve verdadero si hay articulos añadidos al almacen o falso si no
+     */
+    public boolean stockArticulos() {
         return articulos.isEmpty();
     }
 
+    /**
+     * Comprueba si hay instancias de almacen en la lista de almacenes
+     * @return Devuelve verdadero si hay instancias en la lista o falso si no hay instancias
+     */
+    public static boolean isEmpty() {
+        return almacenes.isEmpty();
+    }
+
+    /**
+     * Devulve la cantidad de instancias de almacen que hay en la lista de almacenes
+     * @return Devulve un entero que se corresponde a la cantidad de instancias en la lista
+     */
+    public static int getSize() {
+        return almacenes.size();
+    }
+
+    /**
+     * Metodo getter de almacen
+     * @param idAlmacen Entero que se corresponde con la posicion que tiene la instancia de Almacen en la lista
+     * @return Devulve la instancia de Almacen en la posicion de la lista
+     */
+    public static Almacen getAlmacen(int idAlmacen) {
+        return almacenes.get(idAlmacen);
+    }
+
+    public static List<Almacen> getList() {
+        return almacenes;
+    }
     @Override
     public String toString() {
         return "Articulos del Almacen:\n" +
