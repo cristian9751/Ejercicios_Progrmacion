@@ -14,9 +14,7 @@ public class Pedido {
     Pedido(String nombreCliente, double descuento) {
         setNombreCliente(nombreCliente);
         setDescuento(descuento);
-        if(!this.isEmpty()) {
-            pedidos.add(this);
-        }
+        pedidos.add(this);
     }
 
     Pedido(String nombreCliente) {
@@ -106,9 +104,10 @@ public class Pedido {
                 "Detalles del pedido: \n" +
                 "Nombre del Cliente: " + nombreCliente + "\n";
         String s2 =  "\nArticulos pedidos:\n" +
-                "Articulo \t Cantidad";
+                "Articulo \t Cantidad \t IVA";
         for(Map.Entry<Articulo, Integer> articulo : carrito.entrySet()) {
-            s2 += "\n" + articulo.getKey().getNombre() + "\t\t" + articulo.getValue() + "\n";
+            Articulo a = articulo.getKey();
+            s2 += "\n" + a.getNombre() + "\t\t" + articulo.getValue() + "\n" + a.getIva().getProcentaje();
         }
 
         String s3 ="Subtotal : " + this.getSubTotal() + " €\n" +

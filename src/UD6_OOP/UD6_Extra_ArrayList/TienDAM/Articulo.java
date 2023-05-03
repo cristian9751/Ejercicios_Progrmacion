@@ -3,13 +3,12 @@ package UD6_OOP.UD6_Extra_ArrayList.TienDAM;
 public class Articulo {
     private String nombre;
     private double precio_sin_iva;
-    //private double precio_final; //Precio en el que se incluye el iva del atriculo
     private int cantidad;
     private TiposIva iva;
 
     public Articulo(String nombre, double precio_sin_iva, TiposIva iva, int cantidad) {
         setNombre(nombre);
-        setPrecioSinIva(precio_sin_iva);
+        getPrecioSinIva(precio_sin_iva);
         this.iva = iva;
         if(cantidad > 0) {
             this.cantidad = cantidad;
@@ -41,7 +40,7 @@ public class Articulo {
         return this.cantidad;
     }
 
-    public boolean setPrecioSinIva(Double Precio_Sin_Iva) {
+    public boolean getPrecioSinIva(Double Precio_Sin_Iva) {
         if(Precio_Sin_Iva > 0) {
             this.precio_sin_iva = Precio_Sin_Iva;
             return true;
@@ -50,7 +49,7 @@ public class Articulo {
         }
     }
 
-    public Double get_precio_sin_iva() {
+    public Double getPrecioSinIva() {
         return precio_sin_iva;
     }
 
