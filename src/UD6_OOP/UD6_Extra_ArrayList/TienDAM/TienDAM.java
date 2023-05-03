@@ -6,11 +6,11 @@ import java.util.List;
 
 public class TienDAM {
     private static void mostrarLista(List lista, String txt) {
-        Iterator it_lista = lista.iterator();
+        Iterator itLista = lista.iterator();
         int contador = 0;
         System.out.println(txt);
-        while(it_lista.hasNext()) {
-            System.out.println("ID: " + contador + "\n" +  it_lista.next());
+        while(itLista.hasNext()) {
+            System.out.println("ID: " + contador + "\n" +  itLista.next());
         }
     }
     public static void main(String[] args) {
@@ -18,7 +18,7 @@ public class TienDAM {
         Articulo articulo = new Articulo("Articulo1", 21.0, TiposIva.GENERAL, 100);
         mostrarLista(Almacen.getList(), "Almacenes disponibles");
         Pedido pedido = new Pedido("Cliente1");
-        mostrarLista(Pedido.getList(), "Pedidos: ");
         pedido.anyadirArticulo(articulo, 10);
+        mostrarLista(Pedido.getList(), "Pedidos: ");
     }
 }

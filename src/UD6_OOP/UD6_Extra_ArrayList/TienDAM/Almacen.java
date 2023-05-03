@@ -87,6 +87,23 @@ public class Almacen {
     public static List<Almacen> getList() {
         return almacenes;
     }
+
+    public static boolean checkExists(int idAlmacen) {
+        if(almacenes.get(idAlmacen) == null) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    public static boolean eliminarAlmacen(int idAlmacen) {
+        if(!checkExists(idAlmacen)) {
+            return false;
+        } else {
+            almacenes.remove(idAlmacen);
+            return false;
+        }
+    }
     @Override
     public String toString() {
         return "Articulos del Almacen:\n" +
