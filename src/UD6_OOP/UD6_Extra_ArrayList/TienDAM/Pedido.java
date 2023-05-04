@@ -11,6 +11,8 @@ public class Pedido {
     private HashMap<Articulo, Integer> carrito = new HashMap<>();
     private static List<Pedido> pedidos = new ArrayList<>();
 
+    private static double descuentoDefault = 0.0;
+
     Pedido(String nombreCliente, double descuento) {
         setNombreCliente(nombreCliente);
         setDescuento(descuento);
@@ -18,7 +20,7 @@ public class Pedido {
     }
 
     Pedido(String nombreCliente) {
-        this(nombreCliente, 0.0);
+        this(nombreCliente, descuentoDefault);
     }
 
     public boolean setNombreCliente(String nombreCliente) {
@@ -35,6 +37,18 @@ public class Pedido {
     }
 
 
+    public static boolean setDescuetoDefault(double descuento) {
+        if(descuento <= 0) {
+            return false;
+        } else {
+            descuentoDefault = descuento;
+            return true;
+        }
+    }
+
+    public static double getDescuentoDefault() {
+        return descuentoDefault;
+    }
     public boolean setDescuento(double descuento) {
         if(descuento <= 0) {
             return false;
