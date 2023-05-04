@@ -21,7 +21,7 @@ public class Almacen {
     }
 
     public boolean eliminarArticulo(int id_articulo) {
-        if(!checkExists(articulos.get(id_articulo).getNombre())) {
+        if(!checkArticuloExists(articulos.get(id_articulo).getNombre())) {
             return false;
         } else {
             articulos.remove(id_articulo);
@@ -30,7 +30,7 @@ public class Almacen {
     }
 
     public boolean agregarArticulo(Articulo nuevo_articulo) {
-        if(checkExists(nuevo_articulo.getNombre())) {
+        if(checkArticuloExists(nuevo_articulo.getNombre())) {
             return false;
         } else {
             articulos.add(nuevo_articulo);
@@ -38,12 +38,16 @@ public class Almacen {
         }
     }
 
+    public Articulo getArticulo(int idArticulo) {
+        return articulos.get(idArticulo);
+    }
+
     /**
      * Comprueba si el articulo esta en la lista de articulos de la instancia almacen correspondiente
      * @param nombre NOmbre del articulo que queremos comprobar
      * @return Devuelve un valor booleano. True si se encuentra o false si no se encuentra
      */
-    private boolean checkExists(String nombre) {
+    private boolean checkArticuloExists(String nombre) {
         if(buscarArticulo(nombre).isEmpty()) {
             return false;
         } else {

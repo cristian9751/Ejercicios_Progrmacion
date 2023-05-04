@@ -36,8 +36,9 @@ public class TienDAM {
         System.out.println("TIPOS DE IVA");
         System.out.println("ID \t TIPO DE IVA \t PROCENTAJE\n");
         TiposIva[] tipos = TiposIva.values();
-        for(int i = 0; i<tipos.length; i++) {
-            System.out.println(i + "\t"  + tipos[i].getNombre() + "\t" + tipos[i].getProcentaje() + "\n");
+
+        for(int i = 0; i< tipos.length; i++) {
+            System.out.println(i + "\t" + tipos[i].getNombre() + "\t\t" + tipos[i].getProcentaje());
         }
 
         return tipos[pideInt("Introduce el ID  del tipo de iva que quieres aplicar")];
@@ -91,14 +92,27 @@ public class TienDAM {
         }
         return res;
     }
+
+    private static boolean selDescuento() {
+        String seleccion = pideString("¿Quieres aplicar un descuento a este pedido?");
+        if(seleccion.toUpperCase() == "SI") {
+            return true;
+        } else {
+            System.out.println("No se va a aplicar ningun descuento a este pedido");
+            return false;
+        }
+    }
     private static Pedido nuevoPedido() {
         String nombreCliente = pideString("Introduce el nombre del cliente: ");
-        boolean hayDescuento = false;
+        boolean hayDescuento = selDescuento();
         Pedido nuevoPedido = null;
         if(!hayDescuento) {
            nuevoPedido = new  Pedido(nombreCliente);
         } else {
             double descuento = pideDouble("Introduce el descuento que va a tener el pedido: ");
+            if(descuento == Pedido.getDescuentoDefault()) {
+                hayDescuento = false;
+            }
             nuevoPedido = new Pedido(nombreCliente, descuento);
         }
 
@@ -111,7 +125,95 @@ public class TienDAM {
         }
 
     }
+
+    private static Almacen escogerAlmacen() {
+        if(Almacen.isEmpty()) {
+            System.out.println("No hay ningun almacen que escoger");
+            return null;
+        } else if(Almacen.getSize() == 1) {
+            return Almacen.getAlmacen(0);
+        } else {
+            mostrarLista(Almacen.getList(), "Lista de almacenes a escoger");
+            return Almacen.getAlmacen(pideInt("Selecciona la id del almacen que quieres escoger: "));
+        }
+    }
+
+    private static void recogerOpcion(MenuOpciones menu, Almacen almacen, Articulo articulo) {
+        System.out.println(menu.getTitulo());
+        menu.mostrarOpciones();
+        int opcion = pideInt("Selecciona una opcion del 1 al " + menu.getOpcionFinal());
+
+        if(menu == MenuOpciones.PRINCIPAL) {
+            manejoMenuPrincipal(opcion, almacen, articulo);
+        }
+    }
+
+    private static int obtenerIdArticulo(Almacen almacen) {
+        mostrarLista(almacen.buscarArticulo(pideString("Introduce el nombre del articulo: ")),
+                "Articulos que coinciden con el nombre indicado");
+        return pideInt("Selecciona la id del articulo: ");
+    }
+
+    private static void manejoMenuPrincipal(int opcion, Almacen almacen, Articulo articulo) {
+        if(opcion >= 5 && opcion <= 7) {
+            almacen = escogerAlmacen();
+            articulo = almacen.getArticulo(obtenerIdArticulo(almacen));
+        }
+        switch (opcion) {
+            case 1:
+                if(Almacen.isEmpty()) {
+                    System.out.println("No hay almacenes que mostrar");
+                } else {
+                    mostrarLista(Almacen.getList(), "Lista de Almacenes: ");
+                }
+                break;
+
+            case 2:
+                new Almacen();
+                System.out.println("Almacen creado correctamente");
+                break;
+            case 3:
+                articulo = crearArticulo();
+                if(articulo != null) {
+                    escogerAlmacen().agregarArticulo(articulo);
+                }
+                articulo = null;
+
+            case 4:
+                almacen.eliminarArticulo(obtenerIdArticulo(almacen));
+                almacen = null;
+                break;
+            case 5:
+                mostrarLista(Almacen.getList(), "Lista de Almacenes: ");
+                Almacen.eliminarAlmacen(pideInt("Selecciona la id del almacen que " +
+                        "quieres eliminar"));
+                break;
+
+            case 6:
+                articulo.aumentarCantidad(pideInt("Introduce la cantidad " +
+                        "que has recibido de " + articulo.getNombre()));
+                almacen = null;
+                articulo = null;
+                break;
+            case 7:
+                articulo.reducirCantidad(pideInt("Introduce la cantidad de " +
+                        articulo.getNombre() +  " devuelta"));
+                almacen = null;
+                articulo = null;
+                break;
+
+            default:
+                System.out.println("Debes de seleccionar una opcion  del 1 al " + MenuOpciones.PRINCIPAL.getOpcionFinal());
+                recogerOpcion(MenuOpciones.PRINCIPAL, almacen, articulo);
+
+        }
+    }
+
+
     public static void main(String[] args) {
-        crearArticulo();
+        Articulo articulo = null;
+        Almacen almacen = null;
+        recogerOpcion(MenuOpciones.PRINCIPAL, almacen, articulo);
+
     }
 }
