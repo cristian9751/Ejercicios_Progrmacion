@@ -1,5 +1,6 @@
 package UD6_OOP.UD6_Extra_ArrayList.TienDAM;
 
+import java.sql.SQLOutput;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
@@ -9,11 +10,16 @@ public class TienDAM {
     private static Scanner in = new Scanner(System.in);
 
     private static void mostrarLista(List lista, String txt) {
+        if(lista.isEmpty()) {
+            System.out.println("No hay elementos que mostrar");
+            return;
+        }
         Iterator itLista = lista.iterator();
         int contador = 0;
         System.out.println(txt);
         while (itLista.hasNext()) {
             System.out.println("ID: " + contador + "\n" + itLista.next());
+            contador++;
         }
     }
 
@@ -31,7 +37,9 @@ public class TienDAM {
 
     private static int pideInt(String txt) {
         System.out.println(txt);
-        return in.nextInt();
+        int a = in.nextInt();
+        in.nextLine();
+        return a;
     }
 
     private static TiposIva pideTipoIva() {
@@ -83,20 +91,6 @@ public class TienDAM {
         }
     }
 
-
-    private static boolean checkPedido(Pedido pedido, boolean descuento) {
-        boolean res = true;
-        if (pedido.getNombreCliente() == null) {
-            System.out.println("El nombre del cliente debe de contener mas de un caracter alfanumerico");
-            res = false;
-        }
-
-        if (descuento && pedido.getDescuento() == 0.0) {
-            System.out.println("No puedes indicar valores negativos como descuento");
-        }
-        return res;
-    }
-
     private static boolean selDescuento() {
         String seleccion = pideString("¿Quieres aplicar un descuento a este pedido?");
         if (seleccion.toUpperCase() == "SI") {
@@ -107,31 +101,6 @@ public class TienDAM {
         }
     }
 
-    private static Pedido nuevoPedido(Articulo articulo, int cantidadArticulo) {
-        String nombreCliente = pideString("Introduce el nombre del cliente: ");
-        boolean hayDescuento = selDescuento();
-        Pedido nuevoPedido = null;
-        if (!hayDescuento) {
-            nuevoPedido = new Pedido(nombreCliente, articulo, cantidadArticulo);
-        } else {
-            double descuento = pideDouble("Introduce el descuento que va a tener el pedido: ");
-            if (descuento == Pedido.getDescuentoDefault()) {
-                hayDescuento = false;
-            }
-            nuevoPedido = new Pedido(nombreCliente, descuento, articulo, cantidadArticulo);
-        }
-
-        if (!checkPedido(nuevoPedido, hayDescuento)) {
-            System.out.println("No se ha podido realizar el pedido");
-            return null;
-        } else {
-            System.out.println("Pedido realizado correctamente");
-            return nuevoPedido;
-
-        }
-
-    }
-
 
     private static Almacen escogerAlmacen() {
         if (Almacen.isEmpty()) {
@@ -140,8 +109,9 @@ public class TienDAM {
         } else if (Almacen.getSize() == 1) {
             return Almacen.getAlmacen(0);
         } else {
-            mostrarLista(Almacen.getList(), "Lista de almacenes a escoger");
-            return Almacen.getAlmacen(pideInt("Selecciona la id del almacen que quieres escoger: "));
+            int idAlmacen = obtnerId(Almacen.getList(), "Lista de almacenes", "Escoge la id " +
+                    "del almacen: ");
+            return Almacen.getAlmacen(idAlmacen);
         }
     }
 
@@ -149,13 +119,20 @@ public class TienDAM {
         System.out.println(menu.getTitulo());
         menu.mostrarOpciones();
         int opcion = pideInt("Selecciona una opcion del 1 al " + menu.getOpcionFinal());
-        //CONTINUAR
+        switch (menu) {
+            case PRINCIPAL :
+                manejarMenuPrincipal(opcion, almacen, articulo);
+                break;
+            case SUBMENU_PEDIDOS:
+                manejarMenuPedidos(opcion, almacen, articulo);
+                break;
+
+        }
     }
 
-    private static int obtenerIdArticulo(Almacen almacen) {
-        mostrarLista(almacen.buscarArticulo(pideString("Introduce el nombre del articulo: ")),
-                "Articulos que coinciden con el nombre indicado");
-        return pideInt("Selecciona la id del articulo: ");
+    private static int obtnerId(List list, String s1, String s2) {
+        mostrarLista(list, s1);
+        return pideInt(s2);
     }
 
     private static void mostrarError(int error, String error0, String error1, String correcto) {
@@ -171,8 +148,6 @@ public class TienDAM {
 
         }
     }
-
-
 
 
     private static void manejarMenuPrincipal(int opcion, Almacen almacen, Articulo articulo) {
@@ -192,6 +167,83 @@ public class TienDAM {
                 recogerOpcion(MenuOpciones.PRINCIPAL, almacen, articulo);
                 break;
         }
+    }
+
+    private static void manejarMenuPedidos(int opcion, Almacen almacen, Articulo articulo) {
+        Pedido pedido = null;
+        int error;
+        if(opcion >= 3 && opcion <= 6) {
+            pedido = Pedido.getPedido(obtnerId(Pedido.getPedidos(), "Lista de pedidos",
+                    "Selecciona la id del pedido"));
+            almacen = escogerAlmacen();
+            articulo = almacen.getArticulo(obtnerId(almacen.getArticulos(), "Articulos del almacen: " ,
+                    "Escoge la id del articulo: "));
+        }
+        switch (opcion) {
+            case 1:
+                mostrarLista(Pedido.getPedidos(), "Listado de pedidos: ");
+                break;
+            case 2:
+                pedido = new Pedido(pideString("Introduce el nombre del cliente: "));
+                if(pedido.getNombre() == null) {
+                    System.out.println("El nombre del cliente debe contener mas de un " +
+                            "caracter alfanumerico");
+
+                } else {
+                    System.out.println("Pedido de " + pedido.getNombre() + " realizado correctametne");;
+                }
+                break;
+
+            case 3:
+                error = pedido.addArticulo(articulo, pideInt("Introduce la cantidad de "
+                + articulo.getNombre() + " que se quiere comprar"));
+                mostrarError(error, "La cantidad debe de ser mayor que 0"
+                , "La cantidad debe de ser suerior a las existencias de "
+                 + articulo.getNombre() + "( " + articulo.getCantidad() + ")",
+                        "Cantidad de "+  articulo.getNombre() +
+                        " actualizadaa correctametne");
+                break;
+            case 4:
+                if(!pedido.removeArticulo(articulo)) {
+                    System.out.println(articulo.getNombre() +
+                            " no se encuentra en el pedido indicado");
+                } else {
+                    System.out.println("Se ha eliminado " + articulo.getNombre()
+                    + " del pedido");
+                }
+                break;
+            case 5:
+                if(!pedido.existsInPedido(articulo)) {
+                    System.out.println("Primero debes añadir el articulo al pedido");
+                } else {
+                    pedido.addArticulo(articulo, pideInt("Indica la nueva cantidd de " +
+                            articulo.getNombre()));
+                }
+                break;
+
+            case 6:
+                String hayDescuento = pideString("¿Se va a aplicar un descuento a este pedido?(SI o NO): ");
+                if(hayDescuento.toUpperCase() == "SI") {
+                    System.out.println(pedido);
+                    System.out.println("TOTAL: " + pedido.getTotal(pideDouble(
+                            "Introduce el desceunto que quieres aplicar al pedido"
+                    )));
+                } else if(hayDescuento.toUpperCase() == "NO") {
+                    System.out.println(pedido);
+                    System.out.println("TOTAL : "+ pedido.getTotal());
+                } else {
+                    System.out.println("Debes de seleccionar si deseas o no aplicar" +
+                            " un decuento");
+                }
+                break;
+        }
+    }
+
+
+    public static void main(String[] args) {
+        Articulo articulo = null;
+        Almacen almacen = null;
+        recogerOpcion(MenuOpciones.PRINCIPAL, almacen, articulo);
     }
 
 

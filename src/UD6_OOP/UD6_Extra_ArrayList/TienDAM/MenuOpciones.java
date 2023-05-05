@@ -9,7 +9,7 @@ public enum MenuOpciones {
     , "Eliminar articulo del almacen", "Recibir unidades de un articulo", "Devolver unidades de un articulo"}),
 
     SUBMENU_PEDIDOS("MENU PEDIOS", new String[]{"Ver pedidos", "Crear nuevo pedido", "Agregar articulo a pedido",
-            "Eliminar articulo a pedido", "Modificar pedido"});
+            "Eliminar articulo de pedido", "Modificar cantidades del pedido", "Realizar compra"});
     String titulo;
     String[] opciones;
     MenuOpciones(String titulo, String[] opciones) {

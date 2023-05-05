@@ -6,134 +6,89 @@ import java.util.List;
 import java.util.Map;
 
 public class Pedido {
-    String nombreCliente;
-    double descuento;
-    private HashMap<Articulo, Integer> carrito = new HashMap<>();
     private static List<Pedido> pedidos = new ArrayList<>();
+    private HashMap<Articulo,Integer> carrito= new HashMap<>();
 
-    private static double descuentoDefault = 0.0;
+    private String nombreCliente;
 
-    Pedido(String nombreCliente, double descuento, Articulo articulo, int cantidadArticulo) {
-        setNombreCliente(nombreCliente);
-        setDescuento(descuento);
-        anyadirArticulo(articulo, cantidadArticulo);
+    Pedido(String nombre) {
+        setNombre(nombre);
         pedidos.add(this);
     }
 
-    Pedido(String nombreCliente, Articulo articulo , int cantidadArticulo) {
-        this(nombreCliente, descuentoDefault, articulo, cantidadArticulo);
+    public static List<Pedido> getPedidos() {
+        return pedidos;
     }
-
-    private int setCantidadArticulo(int cantidad, Articulo articulo) {
-        if(cantidad <= 0) {
-            return 0;
-        } else if(cantidad > articulo.getCantidad()) {
-            return 1;
-        } else {
-            return 2;
-        }
-    }
-    public boolean setNombreCliente(String nombreCliente) {
-        if(nombreCliente.length() <= 1) {
+    public boolean setNombre(String nombre) {
+        if(nombre.length() <= 0) {
             return false;
         } else {
-            this.nombreCliente = nombreCliente;
+            this.nombreCliente = nombre;
             return true;
         }
     }
 
-    public String getNombreCliente() {
+    public String getNombre() {
         return this.nombreCliente;
     }
 
+    public int getCantidadArticulo(Articulo articulo) {
+        return carrito.get(articulo);
+    }
 
-    public static boolean setDescuetoDefault(double descuento) {
-        if(descuento <= 0) {
+    public int addArticulo(Articulo articulo, int cantidad) {
+        if(cantidad <= 0)
+            return 0;
+        if(cantidad > articulo.getCantidad())
+            return 1;
+        carrito.put(articulo,  cantidad);
+        return 2;
+    }
+
+    public boolean removeArticulo(Articulo articulo) {
+        if(!carrito.containsKey(articulo)) {
             return false;
-        } else {
-            descuentoDefault = descuento;
+        }
+        carrito.remove(articulo);
+        return true;
+    }
+
+    public static Pedido getPedido(int idPedido) {
+        return pedidos.get(idPedido);
+    }
+
+    public boolean existsInPedido(Articulo articulo) {
+        if(carrito.containsKey(articulo)) {
             return true;
         }
-    }
-
-    public static double getDescuentoDefault() {
-        return descuentoDefault;
-    }
-    public boolean setDescuento(double descuento) {
-        if(descuento <= 0) {
-            return false;
-        } else {
-            this.descuento = descuento;
-            return true;
-        }
-    }
-
-    public double getDescuento() {
-        return this.descuento;
-    }
-
-    public double getSubTotal() {
-        Double suma = 0.0;
-        for (Articulo articulo: carrito.keySet()) {
-            suma += articulo.getPrecioFinal();
-        }
-        return suma;
+        return false;
     }
 
     public double getTotal() {
-        return this.getSubTotal() - this.getDescuento();
-    }
-
-    private boolean checkInpedido(Articulo articulo) {
-        boolean res = false;
-        for(Articulo it : carrito.keySet()) {
-            if(articulo == it) {
-                res = true;
-            }
+        Double resultado = 0.0;
+        for(Articulo articulo : carrito.keySet()) {
+            resultado += articulo.getPrecioFinal();
         }
-        return res;
+        return resultado;
     }
 
-    public int anyadirArticulo(Articulo nuevoArticulo, int cantidad) {
-        if(checkInpedido(nuevoArticulo)) {
-            return 0;
-        } else {
-            return this.setCantidadArticulo(cantidad, nuevoArticulo);
-        }
+
+    public double getTotal(double descuento) {
+        return this.getTotal() - descuento;
     }
 
-    public boolean isEmpty() {
-        return carrito.isEmpty();
-    }
-    public boolean quitarArticulo(Articulo eliminarArticulo) {
-        if(!checkInpedido(eliminarArticulo)) {
-            return false;
-        } else {
-            carrito.remove(eliminarArticulo);
-            return true;
-        }
-    }
 
-    public static List<Pedido> getList() {
-        return pedidos;
-    }
     @Override
     public String toString() {
-        String s1 = "\n----------\n" +
-                "Detalles del pedido: \n" +
-                "Nombre del Cliente: " + nombreCliente + "\n";
-        String s2 =  "\nArticulos pedidos:\n" +
-                "Articulo \t Cantidad \t IVA";
+        String s1 = "NOMBRE DEL CLIENTE\t\tARTICULO\t\tCANTIDAD\t\tIVA\t\tPRECIO FINAL\n";
+        String s2 = new String();
         for(Map.Entry<Articulo, Integer> articulo : carrito.entrySet()) {
             Articulo a = articulo.getKey();
-            s2 += "\n" + a.getNombre() + "\t\t" + articulo.getValue() + "\n" + a.getIva().getProcentaje();
+            System.out.println(nombreCliente + "\t\t" + a.getNombre() + getCantidadArticulo(a)
+            + "\t\t" + a.getIva().getProcentaje() + "\t\t" + a.getPrecioFinal());
+            System.out.println();
+
         }
-
-        String s3 ="Subtotal : " + this.getSubTotal() + " €\n" +
-                "Descuento: " + descuento + " €\n" +
-                "Total a pagar: " + getTotal() + " €\n" +
-                "----------\n";
-
-        return s1.concat(s2).concat(s3);
+        return s1.concat(s2);
     }
 }
