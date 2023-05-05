@@ -20,6 +20,10 @@ public class Almacen {
         return resultado;
     }
 
+    public List<Articulo> getArticulos() {
+        return this.articulos;
+    }
+
     public boolean eliminarArticulo(int id_articulo) {
         if(!checkArticuloExists(articulos.get(id_articulo).getNombre())) {
             return false;
@@ -107,10 +111,5 @@ public class Almacen {
             almacenes.remove(idAlmacen);
             return false;
         }
-    }
-    @Override
-    public String toString() {
-        return "Articulos del Almacen:\n" +
-                articulos;
     }
 }

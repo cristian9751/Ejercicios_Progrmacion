@@ -71,13 +71,15 @@ public class Articulo {
         }
     }
 
-    public boolean reducirCantidad(int Cantidad) {
+    public int reducirCantidad(int Cantidad) {
         int nueva_cantidad = this.cantidad - Cantidad;
         if(nueva_cantidad <= 0) {
-            return false;
+            return 0;
+        } else if(Cantidad > this.cantidad) {
+            return 1;
         } else {
             this.cantidad = nueva_cantidad;
-            return true;
+            return 2;
         }
     }
 

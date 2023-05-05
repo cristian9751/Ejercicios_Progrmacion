@@ -13,16 +13,26 @@ public class Pedido {
 
     private static double descuentoDefault = 0.0;
 
-    Pedido(String nombreCliente, double descuento) {
+    Pedido(String nombreCliente, double descuento, Articulo articulo, int cantidadArticulo) {
         setNombreCliente(nombreCliente);
         setDescuento(descuento);
+        anyadirArticulo(articulo, cantidadArticulo);
         pedidos.add(this);
     }
 
-    Pedido(String nombreCliente) {
-        this(nombreCliente, descuentoDefault);
+    Pedido(String nombreCliente, Articulo articulo , int cantidadArticulo) {
+        this(nombreCliente, descuentoDefault, articulo, cantidadArticulo);
     }
 
+    private int setCantidadArticulo(int cantidad, Articulo articulo) {
+        if(cantidad <= 0) {
+            return 0;
+        } else if(cantidad > articulo.getCantidad()) {
+            return 1;
+        } else {
+            return 2;
+        }
+    }
     public boolean setNombreCliente(String nombreCliente) {
         if(nombreCliente.length() <= 1) {
             return false;
@@ -84,16 +94,11 @@ public class Pedido {
         return res;
     }
 
-    public boolean anyadirArticulo(Articulo nuevoArticulo, int cantidad) {
+    public int anyadirArticulo(Articulo nuevoArticulo, int cantidad) {
         if(checkInpedido(nuevoArticulo)) {
-            System.out.println("El articulo que has seleccionado ya esta en el carrito.");
-            return false;
-        } else if(nuevoArticulo.getCantidad() < cantidad) {
-            System.out.println("No hay existencias suficientes de " + nuevoArticulo.getNombre());
-            return false;
+            return 0;
         } else {
-            carrito.put(nuevoArticulo, cantidad);
-            return true;
+            return this.setCantidadArticulo(cantidad, nuevoArticulo);
         }
     }
 
