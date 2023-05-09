@@ -126,9 +126,16 @@ public class TienDAM {
             case SUBMENU_PEDIDOS:
                 manejarMenuPedidos(opcion, almacen, articulo);
                 break;
+            case SUBMENU_ALMACEN:
+                manejarMenuAlmacen(opcion, almacen, articulo);
+                break;
 
         }
-    }
+
+        if(opcion != menu.getOpcionFinal()) {
+            recogerOpcion(menu, almacen, articulo);
+        }
+     }
 
     private static int obtnerId(List list, String s1, String s2) {
         mostrarLista(list, s1);
@@ -151,7 +158,6 @@ public class TienDAM {
 
 
     private static void manejarMenuPrincipal(int opcion, Almacen almacen, Articulo articulo) {
-        almacen = escogerAlmacen();
         switch (opcion) {
             case 1:
                 recogerOpcion(MenuOpciones.SUBMENU_ALMACEN, almacen, articulo);
@@ -171,10 +177,15 @@ public class TienDAM {
 
     private static void manejarMenuPedidos(int opcion, Almacen almacen, Articulo articulo) {
         Pedido pedido = null;
+        almacen = escogerAlmacen();
+        if(almacen == null) {
+            return;
+        }
         int error;
         if(opcion >= 3 && opcion <= 6) {
             pedido = Pedido.getPedido(obtnerId(Pedido.getPedidos(), "Lista de pedidos",
                     "Selecciona la id del pedido"));
+
             almacen = escogerAlmacen();
             articulo = almacen.getArticulo(obtnerId(almacen.getArticulos(), "Articulos del almacen: " ,
                     "Escoge la id del articulo: "));
@@ -236,16 +247,64 @@ public class TienDAM {
                             " un decuento");
                 }
                 break;
+
+            case 7:
+                System.out.println("Volviendo al menu principal....");
+                break;
+            default:
+                System.out.println("Debes seleccionar una opcion del 1 al "
+                + MenuOpciones.SUBMENU_PEDIDOS.getOpcionFinal());
+                recogerOpcion(MenuOpciones.SUBMENU_PEDIDOS, almacen, articulo);
+                break;
         }
     }
 
 
+    private static void manejarMenuAlmacen(int opcion, Almacen almacen, Articulo articulo) {
+        if(opcion >= 3 && opcion <= 5) {
+            almacen =  escogerAlmacen();
+
+            if(almacen == null) {
+                return;
+            }
+        }
+        switch(opcion) {
+            case 1:
+                mostrarLista(Almacen.getList(), "Lista de almacenes");
+                break;
+            case 2:
+                new Almacen();
+                System.out.println("Almacen creado correctamente");
+                break;
+            case 3:
+                Almacen.eliminarAlmacen(obtnerId(Almacen.getList(), "Lista de almacenes"
+                        , "Selecciona el almacen que quieres eliminar"));
+                System.out.println("Se ha eliminado el almacen correctamente");
+                break;
+
+            case 4:
+                articulo =almacen.getArticulo(obtnerId(almacen.getArticulos(), "Lista de articulos del almacen"
+                        , "Selecciona el  articulo del cual se han recibido unidades"));
+
+                if(articulo.aumentarCantidad(pideInt("Introduce la  cantidad de "
+                        + articulo.getNombre() + " que se ha recibido"))) {
+                    System.out.println("Se ha modificado la cantidad de " +
+                            articulo.getNombre() + " correctamente");
+                }
+                break;
+            case 5:
+                articulo = almacen.getArticulo(obtnerId(almacen.getArticulos(), "Lista de articulos del almacen",
+                        "Selecciona el articulo del cual se han devuelto unidades"));
+                mostrarError(articulo.reducirCantidad(pideInt("Introduce la cantidad devuelta de "
+                + articulo.getNombre())), "La cantidad debe ser mayor que 0", "La  cantidad devuelta no" +
+                        "puede ser mayor a la cantidad disponible del producto", "Se ha modificado la cantidad" +
+                        "de " + articulo.getNombre() + " correctamente                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                ");
+        }
+    }
     public static void main(String[] args) {
         Articulo articulo = null;
         Almacen almacen = null;
         recogerOpcion(MenuOpciones.PRINCIPAL, almacen, articulo);
     }
-
-
 
 }
