@@ -2,12 +2,12 @@ package UD6_OOP.UD6_Extra_ArrayList.TienDAM;
 
 
 public enum MenuOpciones {
-    PRINCIPAL("MENU PRINCIPAL" ,  new String[]{"Almacen", "Pedidos", "Salir"}),
+    PRINCIPAL("MENU PRINCIPAL" ,  new String[]{"Almacen", "Pedidos",  "Salir"}),
     SUBMENU_PEDIDOS("MENU PEDIOS", new String[]{"Ver pedidos", "Crear nuevo pedido", "Agregar articulo a pedido",
             "Eliminar articulo de pedido", "Modificar cantidades del pedido", "Realizar compra", "Volver al menu principal"
     , "Salir"}),
     SUBMENU_ALMACEN("MENU ALMACEN", new String[]{"Ver almacenes", "Crear nuevo almacen", "Eliminar almacen"
-    , "Recibir articulos", "Devolver articulos", "Salir"});
+    , "Recibir articulos", "Devolver articulos",  "Crear nuevo articulo", "Salir"});
     String titulo;
     String[] opciones;
     MenuOpciones(String titulo, String[] opciones) {

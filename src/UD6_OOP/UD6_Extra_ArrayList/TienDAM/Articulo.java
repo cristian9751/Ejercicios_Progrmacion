@@ -6,11 +6,13 @@ public class Articulo {
     private int cantidad;
     private TiposIva iva;
 
-    public Articulo(String nombre, double precio_sin_iva, TiposIva iva, int cantidad) {
+    public Articulo(String nombre, double precio_sin_iva, TiposIva iva, int cantidad) throws Exception {
         setNombre(nombre);
-        getPrecioSinIva(precio_sin_iva);
+        setPrecioSinIva(precio_sin_iva);
         this.iva = iva;
-        if(cantidad > 0) {
+        if(cantidad < 0) {
+           throw new Exception("La cantidad no puede ser  negativa o cero");
+        } else {
             this.cantidad = cantidad;
         }
     }
@@ -19,13 +21,15 @@ public class Articulo {
         return nombre;
     }
 
-    public boolean setNombre(String Nombre) {
+    public boolean setNombre(String Nombre) throws Exception {
+        boolean res = false;
         if(Nombre.length() > 1) {
             this.nombre = Nombre;
-            return true;
+            res = true;
         } else {
-            return false;
+            throw new Exception("El nombre debe de contener mas de una caracter");
         }
+        return res;
     }
 
     public TiposIva getIva() {
@@ -40,13 +44,15 @@ public class Articulo {
         return this.cantidad;
     }
 
-    public boolean getPrecioSinIva(Double Precio_Sin_Iva) {
+    public boolean setPrecioSinIva(Double Precio_Sin_Iva) throws Exception {
+        boolean res = false;
         if(Precio_Sin_Iva > 0) {
             this.precio_sin_iva = Precio_Sin_Iva;
-            return true;
+            res = true;
         } else {
-            return false;
+            throw new Exception("El precio sin iva debe de ser mayor que 0");
         }
+        return res;
     }
 
     public Double getPrecioSinIva() {
@@ -64,6 +70,7 @@ public class Articulo {
     public boolean aumentarCantidad(int Cantidad) {
         int nueva_cantidad = this.cantidad + Cantidad;
         if(nueva_cantidad <= 0) {
+
             return false;
         } else {
             this.cantidad = nueva_cantidad;
@@ -74,7 +81,6 @@ public class Articulo {
     public int reducirCantidad(int Cantidad) {
         int nueva_cantidad = this.cantidad - Cantidad;
         if(nueva_cantidad <= 0) {
-            return 0;
         } else if(Cantidad > this.cantidad) {
             return 1;
         } else {

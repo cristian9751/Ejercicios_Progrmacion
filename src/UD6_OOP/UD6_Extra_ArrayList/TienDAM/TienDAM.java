@@ -1,6 +1,6 @@
 package UD6_OOP.UD6_Extra_ArrayList.TienDAM;
 
-import java.sql.SQLOutput;
+import java.util.InputMismatchException;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
@@ -24,21 +24,51 @@ public class TienDAM {
     }
 
     private static String pideString(String txt) {
+        boolean valido = true;
         System.out.println(txt);
+        do {
+            try {
+                in.nextLine();
+            } catch(InputMismatchException e) {
+                System.out.println("Dato invalido! Debes introducir un numero");
+                valido = false;
+            }
+        } while(!valido);
+
         return in.nextLine();
     }
 
     private static double pideDouble(String txt) {
         System.out.println(txt);
-        double a = in.nextDouble();
-        in.nextLine();
+        boolean valido = true;
+        double a = 0.0;
+            do {
+                try {
+                    a = in.nextDouble();
+                    in.nextLine();
+                } catch(InputMismatchException e) {
+                    System.out.println("Dato invalido!. Debes introducir " +
+                            "un numero double. Ej: 0.0");
+                    valido = false;
+                }
+            } while(!valido);
         return a;
     }
 
     private static int pideInt(String txt) {
         System.out.println(txt);
-        int a = in.nextInt();
-        in.nextLine();
+        boolean valido = true;
+        int a = 0;
+        do {
+            try {
+                a= in.nextInt();
+                in.nextLine();
+            } catch(InputMismatchException e) {
+                System.out.println("Dato invalido. Debes introducir" +
+                        " un numero entero ");
+                valido = false;
+            }
+        } while(!valido);
         return a;
     }
 
@@ -51,7 +81,17 @@ public class TienDAM {
             System.out.println(i + "\t" + tipos[i].getNombre() + "\t\t" + tipos[i].getProcentaje());
         }
 
-        return tipos[pideInt("Introduce el ID  del tipo de iva que quieres aplicar")];
+        TiposIva res = null;
+        boolean valido = true;
+        do {
+            try {
+                res = tipos[pideInt("Introduce el ID del tipo de iva que quieres aplicar: ")];
+            } catch(IndexOutOfBoundsException e) {
+                System.out.println("Debes seleccionar una opcion del 1 al " + tipos.length);
+                valido = false;
+            }
+        }while(!valido);
+        return res;
     }
 
     private static boolean checksArticulo(Articulo articulo) {
@@ -79,8 +119,16 @@ public class TienDAM {
         double precioSinIva = pideDouble("Introduce el precio sin iva del nuevo articulo: ");
         int cantidad = pideInt("Introduce la cantidad del nuevo articulo(Debe de ser superior a 0): ");
         TiposIva iva = pideTipoIva();
-        Articulo nuevoArticulo = new Articulo(nombre, precioSinIva, iva, cantidad);
 
+        try {
+            Articulo nuevoArticulo = new Articulo(nombre, precioSinIva, iva, cantidad);
+            return nuevoArticulo;
+        } catch(Exception e) {
+            System.err.println(e.getMessage());
+            return null;
+        }
+
+        /*
         if (!checksArticulo(nuevoArticulo)) {
             System.out.println("No se ha podido crear el nuevo articulo");
             return null;
@@ -89,16 +137,7 @@ public class TienDAM {
                     " y se ha añadido al almacen");
             return nuevoArticulo;
         }
-    }
-
-    private static boolean selDescuento() {
-        String seleccion = pideString("¿Quieres aplicar un descuento a este pedido?");
-        if (seleccion.toUpperCase() == "SI") {
-            return true;
-        } else {
-            System.out.println("No se va a aplicar ningun descuento a este pedido");
-            return false;
-        }
+        */
     }
 
 
@@ -111,7 +150,11 @@ public class TienDAM {
         } else {
             int idAlmacen = obtnerId(Almacen.getList(), "Lista de almacenes", "Escoge la id " +
                     "del almacen: ");
-            return Almacen.getAlmacen(idAlmacen);
+            try {
+                return Almacen.getAlmacen(idAlmacen);
+            }catch(IndexOutOfBoundsException e) {
+                System.out.println("El id de almacen que has seleccionado no existe");
+            }
         }
     }
 
@@ -140,20 +183,6 @@ public class TienDAM {
     private static int obtnerId(List list, String s1, String s2) {
         mostrarLista(list, s1);
         return pideInt(s2);
-    }
-
-    private static void mostrarError(int error, String error0, String error1, String correcto) {
-        switch (error) {
-            case 0:
-                System.out.println(error0);
-                break;
-            case 1:
-                System.out.println(error1);
-                break;
-            case 2:
-                System.out.println(correcto);
-
-        }
     }
 
 
@@ -187,6 +216,9 @@ public class TienDAM {
                     "Selecciona la id del pedido"));
 
             almacen = escogerAlmacen();
+            if(almacen == null) {
+                return;
+            }
             articulo = almacen.getArticulo(obtnerId(almacen.getArticulos(), "Articulos del almacen: " ,
                     "Escoge la id del articulo: "));
         }
@@ -206,13 +238,7 @@ public class TienDAM {
                 break;
 
             case 3:
-                error = pedido.addArticulo(articulo, pideInt("Introduce la cantidad de "
-                + articulo.getNombre() + " que se quiere comprar"));
-                mostrarError(error, "La cantidad debe de ser mayor que 0"
-                , "La cantidad debe de ser suerior a las existencias de "
-                 + articulo.getNombre() + "( " + articulo.getCantidad() + ")",
-                        "Cantidad de "+  articulo.getNombre() +
-                        " actualizadaa correctametne");
+                //ELIMINAR ARTICULO DE PEDIDO
                 break;
             case 4:
                 if(!pedido.removeArticulo(articulo)) {
@@ -293,13 +319,13 @@ public class TienDAM {
                 }
                 break;
             case 5:
-                articulo = almacen.getArticulo(obtnerId(almacen.getArticulos(), "Lista de articulos del almacen",
-                        "Selecciona el articulo del cual se han devuelto unidades"));
-                mostrarError(articulo.reducirCantidad(pideInt("Introduce la cantidad devuelta de "
-                + articulo.getNombre())), "La cantidad debe ser mayor que 0", "La  cantidad devuelta no" +
-                        "puede ser mayor a la cantidad disponible del producto", "Se ha modificado la cantidad" +
-                        "de " + articulo.getNombre() + " correctamente                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                ");
+               //DEVOLVER ARTICULOS
+                break;
+
+            case 6:
+                articulo = crearArticulo();
         }
+
     }
     public static void main(String[] args) {
         Articulo articulo = null;
