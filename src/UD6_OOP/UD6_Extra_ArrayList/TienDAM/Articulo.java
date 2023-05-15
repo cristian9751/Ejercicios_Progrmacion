@@ -87,6 +87,7 @@ public class Articulo {
             this.cantidad = nueva_cantidad;
             return 2;
         }
+        return 0;
     }
 
 

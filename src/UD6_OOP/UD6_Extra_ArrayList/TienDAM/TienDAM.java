@@ -156,6 +156,7 @@ public class TienDAM {
                 System.out.println("El id de almacen que has seleccionado no existe");
             }
         }
+        return null;
     }
 
     private static void recogerOpcion(MenuOpciones menu, Almacen almacen, Articulo articulo) {
