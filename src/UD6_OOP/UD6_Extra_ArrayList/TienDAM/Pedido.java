@@ -6,8 +6,8 @@ import java.util.List;
 import java.util.Map;
 
 public class Pedido {
-    private static List<Pedido> pedidos = new ArrayList<>();
-    private HashMap<Articulo,Integer> carrito= new HashMap<>();
+    private static List<Pedido> pedidos = new ArrayList<>(); //Lista de pedidos
+    private HashMap<Articulo,Integer> carrito= new HashMap<>(); //HashMap de los articulos y su cantidad
 
     private String nombreCliente;
 
@@ -16,6 +16,10 @@ public class Pedido {
         pedidos.add(this);
     }
 
+    /**
+     *
+     * @return Lista de los pedidos
+     */
     public static List<Pedido> getPedidos() {
         return pedidos;
     }
@@ -36,18 +40,21 @@ public class Pedido {
         return carrito.get(articulo);
     }
 
-    public int addArticulo(Articulo articulo, int cantidad) {
-        if(cantidad <= 0)
-            return 0;
-        if(cantidad > articulo.getCantidad())
-            return 1;
-        carrito.put(articulo,  cantidad);
-        return 2;
+
+    public boolean addArticulo(Articulo articulo, int cantidad) throws Exception {
+        if(cantidad <= 0) {
+            throw new Exception("La cantidad de un producto no pude ser meno que cero o cero");
+        } else if(cantidad > articulo.getCantidad()) {
+            throw new Exception("No hay stock suficiente del articulo seleccionado");
+        } else {
+            carrito.put(articulo, cantidad);
+            return true;
+        }
     }
 
-    public boolean removeArticulo(Articulo articulo) {
+    public boolean removeArticulo(Articulo articulo) throws Exception {
         if(!carrito.containsKey(articulo)) {
-            return false;
+            throw new Exception("El articulo seleccionado no  esta en el pedido");
         }
         carrito.remove(articulo);
         return true;
@@ -57,13 +64,10 @@ public class Pedido {
         return pedidos.get(idPedido);
     }
 
-    public boolean existsInPedido(Articulo articulo) {
-        if(carrito.containsKey(articulo)) {
-            return true;
-        }
-        return false;
-    }
-
+    /**
+     * Metodo que calcula el total del pedido
+     * @return Devuelve un double que es el total del pedido
+     */
     public double getTotal() {
         Double resultado = 0.0;
         for(Articulo articulo : carrito.keySet()) {
@@ -73,8 +77,18 @@ public class Pedido {
     }
 
 
-    public double getTotal(double descuento) {
-        return this.getTotal() - descuento;
+    /**
+     * Metodo  que calcula el total del pedido indicando un procentaje de descuento
+     * @param descuento Procentaje de descuento
+     * @return Devuelve un docuble que es el total despues de aplicar el descuento
+     */
+    public double getTotal(int descuento) throws Exception {
+        if(descuento <= 0) {
+            throw new Exception("El descuento no peude ser menor que cero o cero");
+        }
+        double sinDescuento = this.getTotal();
+        descuento = (int) (sinDescuento * descuento) / 100;
+        return sinDescuento - descuento;
     }
 
 

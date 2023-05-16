@@ -6,6 +6,7 @@ public class Articulo {
     private int cantidad;
     private TiposIva iva;
 
+
     public Articulo(String nombre, double precio_sin_iva, TiposIva iva, int cantidad) throws Exception {
         setNombre(nombre);
         setPrecioSinIva(precio_sin_iva);
@@ -44,6 +45,12 @@ public class Articulo {
         return this.cantidad;
     }
 
+    /**
+     * Metodo que actualiza o indica el parametro PrecioSinIva de la instancia de articulo
+     * @param Precio_Sin_Iva Double que se quiere indicar como PrecioSinIva
+     * @return Devuelve true si se ha podido establecer el precioSinIva o false si no se ha podido
+     * @throws Exception Si el precio es menor que 0
+     */
     public boolean setPrecioSinIva(Double Precio_Sin_Iva) throws Exception {
         boolean res = false;
         if(Precio_Sin_Iva > 0) {
@@ -55,6 +62,11 @@ public class Articulo {
         return res;
     }
 
+
+    /**
+     *
+     * @return Double PrecioSinIva
+     */
     public Double getPrecioSinIva() {
         return precio_sin_iva;
     }
@@ -67,27 +79,36 @@ public class Articulo {
         return (precio_sin_iva + (precio_sin_iva * iva.getProcentaje() / 100));
     }
 
-    public boolean aumentarCantidad(int Cantidad) {
+    /**
+     * Aumenta el int parametro cantidad de la instancia de articulo correspondiente
+     * @param Cantidad Nueva cantidad que queremos aplicar al parametro cantidad
+     * @return Devuelve verdadero si se ha podido modificar la cantidad o false si no se ha podido
+     */
+    public boolean aumentarCantidad(int Cantidad) throws Exception {
+        boolean res = false;
         int nueva_cantidad = this.cantidad + Cantidad;
         if(nueva_cantidad <= 0) {
-
-            return false;
+            throw new Exception("La cantidad no puede  ser cero o menor que cero");
         } else {
             this.cantidad = nueva_cantidad;
-            return true;
+            res = true;
         }
+        return res;
     }
 
-    public int reducirCantidad(int Cantidad) {
-        int nueva_cantidad = this.cantidad - Cantidad;
+
+    public boolean reducirCantidad(int cantidad) throws  Exception {
+        boolean res = false;
+        int nueva_cantidad = this.cantidad -= cantidad;
         if(nueva_cantidad <= 0) {
-        } else if(Cantidad > this.cantidad) {
-            return 1;
+            throw new Exception("La cantidad no puede ser cero o menor que cero");
+        } else if(cantidad > this.cantidad) {
+            throw new Exception("La cantidad no puede ser mayor  que la que hay en el almacen");
         } else {
             this.cantidad = nueva_cantidad;
-            return 2;
+            res = true;
         }
-        return 0;
+        return res;
     }
 
 

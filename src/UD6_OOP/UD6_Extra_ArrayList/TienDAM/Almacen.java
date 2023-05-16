@@ -3,13 +3,23 @@ package UD6_OOP.UD6_Extra_ArrayList.TienDAM;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class Almacen {
     private List<Articulo> articulos =new ArrayList<>();
     private static List<Almacen> almacenes = new ArrayList<>();
+
+    /**
+     * Constructor vacio de almacen que añade dicho almacen al arraylist estatico almacenes
+     */
     public Almacen() {
         almacenes.add(this);
     }
 
+    /**
+     * Metodo que devulve el restultado de una busqueda
+     * @param nombre Nombre del articulo que se busca
+     * @return Devulve una lista de los articulos cuyo nombre coincide o contiene el string busqueda
+     */
     public List<Articulo> buscarArticulo(String nombre) {
         List<Articulo> resultado = new ArrayList<>();
         for(Articulo articulo : articulos) {
@@ -20,10 +30,19 @@ public class Almacen {
         return resultado;
     }
 
+    /**
+     * Metodo para obtener la lista de articulos de la instancia de almacen correspondiente
+     * @return Devuelve un arraylist de articulos
+     */
     public List<Articulo> getArticulos() {
         return this.articulos;
     }
 
+    /**
+     * Metodo que elimina un articulo de un almacen
+     * @param id_articulo posicion de l articulo que se quiere eliminaren el arraylist de articulo
+     * @return Devuelve true si se ha podido eliminar el articulo del almacen en caso contrario devuelve false
+     */
     public boolean eliminarArticulo(int id_articulo) {
         if(!checkArticuloExists(articulos.get(id_articulo).getNombre())) {
             return false;
@@ -33,6 +52,11 @@ public class Almacen {
         }
     }
 
+    /**
+     * Metodo que agrega un articulo a la instancia de almacen correspondiente
+     * @param nuevo_articulo Articulo que se quiere añadir al almcen
+     * @return Devuelve true si se ha añadido el articulo al almacen o false si no se ha podido añadir
+     */
     public boolean agregarArticulo(Articulo nuevo_articulo) {
         if(checkArticuloExists(nuevo_articulo.getNombre())) {
             return false;
@@ -92,10 +116,19 @@ public class Almacen {
         return almacenes.get(idAlmacen);
     }
 
-    public static List<Almacen> getList() {
+    /**
+     * Getter de la lista de almacenes
+     * @return Devuelve la lista estatica de almacenes
+     */
+    public static List<Almacen> getAlmacenes() {
         return almacenes;
     }
 
+    /**
+     * Metodo que comprueba si existe un almacen
+     * @param idAlmacen Se le pasa una posicion del arraylist estatico de almacenes
+     * @return Devuelve booleano si existe el almacen o devulve false si no existe el almacen
+     */
     public static boolean checkExists(int idAlmacen) {
         if(almacenes.get(idAlmacen) == null) {
             return false;
@@ -104,6 +137,11 @@ public class Almacen {
         }
     }
 
+    /**
+     * Metodo que quita un almacen del arraylist estatico almacenes
+     * @param idAlmacen Posicion que tiene el almacen que queremos eliminar en el arraylist estatico de almacenes
+     * @return
+     */
     public static boolean eliminarAlmacen(int idAlmacen) {
         if(!checkExists(idAlmacen)) {
             return false;
