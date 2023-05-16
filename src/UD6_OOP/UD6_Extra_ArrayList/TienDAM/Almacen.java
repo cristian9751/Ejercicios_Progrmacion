@@ -95,17 +95,6 @@ public class Almacen {
      * Comprueba si hay instancias de almacen en la lista de almacenes
      * @return Devuelve verdadero si hay instancias en la lista o falso si no hay instancias
      */
-    public static boolean isEmpty() {
-        return almacenes.isEmpty();
-    }
-
-    /**
-     * Devulve la cantidad de instancias de almacen que hay en la lista de almacenes
-     * @return Devulve un entero que se corresponde a la cantidad de instancias en la lista
-     */
-    public static int getSize() {
-        return almacenes.size();
-    }
 
     /**
      * Metodo getter de almacen
@@ -151,4 +140,8 @@ public class Almacen {
         }
     }
 
+
+    public String toString() {
+        System.out.println("Almacen");
+    }
 }
