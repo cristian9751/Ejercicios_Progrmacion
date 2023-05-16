@@ -1,10 +1,14 @@
 package UD6_OOP.UD6_Extra_ArrayList.TienDAM;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Articulo {
     private String nombre;
     private double precio_sin_iva;
     private int cantidad;
     private TiposIva iva;
+    private static List<Articulo > articulosList = new ArrayList<>(); //LISTA DE TODOS LOS ARTICULOS EN GENERAL
 
 
     public Articulo(String nombre, double precio_sin_iva, TiposIva iva, int cantidad) throws Exception {
@@ -16,8 +20,17 @@ public class Articulo {
         } else {
             this.cantidad = cantidad;
         }
+
+        articulosList.add(this);
     }
 
+    public static Articulo getArticulo(int idArticulo) {
+        return articulosList.get(idArticulo);
+    }
+
+    public static List<Articulo> getArticulosList() {
+        return articulosList;
+    }
     public String getNombre() {
         return nombre;
     }

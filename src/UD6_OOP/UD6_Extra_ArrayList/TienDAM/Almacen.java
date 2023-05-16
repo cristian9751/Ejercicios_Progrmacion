@@ -142,6 +142,6 @@ public class Almacen {
 
 
     public String toString() {
-        System.out.println("Almacen");
+        return "Almacen";
     }
 }
