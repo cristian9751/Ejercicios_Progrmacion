@@ -63,7 +63,7 @@ public class CuentaCorriente {
         try {
             this.setSaldo(this.saldo - cantidad);
         } catch (Exception e) {
-            System.out.println("No hay fondos suficientes");;
+            System.out.println("No hay fondos suficientes");
             res = false;
         }
         return res;
@@ -74,7 +74,7 @@ public class CuentaCorriente {
         System.out.println("Coste operacion: " + costeOperacion);
         cantidad -= costeOperacion;
         try {
-            this.setSaldo(this.saldo - cantidad);
+            this.setSaldo(this.saldo + cantidad);
         } catch (Exception e) {
             System.out.println(e.getMessage());;
             res = false;

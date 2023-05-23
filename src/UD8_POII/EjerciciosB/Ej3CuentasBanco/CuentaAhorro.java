@@ -12,11 +12,21 @@ public class CuentaAhorro extends CuentaCorriente {
         interesesMensual = 10;
     }
 
-
-    @Override
-    public boolean ingresar(double cantidad)  {
-        if(contOperaciones >= maxOperaciones && super.ingresar(cantidad)) {
+    public boolean ingresar(double cantidad) {
+        if(contOperaciones < maxOperaciones && super.ingresar(cantidad)) {
             contOperaciones++;
+            return true;
+        }  else {
+            return false;
+        }
+    }
+
+    public boolean retiar(double cantidad) {
+        if(contOperaciones <= maxOperaciones && super.retirar(cantidad)) {
+            contOperaciones ++;
+            return true;
+        }  else {
+            return false;
         }
     }
 }
